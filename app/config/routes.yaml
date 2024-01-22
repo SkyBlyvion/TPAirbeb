@@ -6,4 +6,4 @@ controllers:
 
 app_about:
     path: /about
-    controller: App\Controller\HomeController::aboutairbnb
+    controller: App\Controller\HomeController::aboutairbeb
