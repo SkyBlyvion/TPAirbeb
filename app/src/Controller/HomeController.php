@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route("/homer", name: "accueil")]
+    #[Route("/accueil", name: "accueil")]
     public function home()
     {
         // $lien = "<a href='page/2'>liens vers la page 2</a>";

@@ -1,8 +1,117 @@
-{# Mon premier fichier twig #}
-{% extends "base.html.twig" %}
-
-{% block title %}Mon accueil{% endblock %}
-
+{% extends 'base.html.twig' %}
+{% block title %} Découvrez un monde d'aventures avec notre site {%  endblock %}
+{% block header %}
+<h2>header</h2>
+{% endblock %}
 {% block body %}
-<h2>Bienvenue dans l'accueil</h2>
+<div class="container">
+   <div class="jumbotron mt-3">
+      <!-- bootstrap component -->
+      <h1 class="display-3">Explorez le monde avec Airbeb</h1>
+      <p class="lead">Airbeb révolutionne le voyage en offrant une plateforme facile d'utilisation pour réserver des hébergements uniques et des expériences mémorables partout sur la planète. </p>
+      <hr class="my-4">
+      <p class="lead">
+         <a class="btn btn-primary btn-lg" href="/ads" role="button">Découvrez nos offres</a>
+      </p>
+   </div>
+   <h2 class="h1 mt-5 mb-4">Sélection de logements haut de gamme</h2>
+   <div class="row mt-5">
+      <div class="col-md-4">
+         <div class="card bg-light mb3">
+            <div class="card-header text-center">
+               Loft spacieux, <b>30 nuits</b> <br>
+               <small>Pas encore noté</small>
+            </div>
+            <img src="http://placehold.it/1000x400" alt="Image du loft" style="height: 200px; width: 100%; display: block">
+            <div class="card-body">
+               <h4 class="card-title">
+                  Loft
+               </h4>
+               <p class="card-text">
+                  Un espace élégant et raffiné, idéal pour des séjours en ville. Profitez du confort et de la modernité en plein cœur de la métropole.
+               </p>
+               <a href="#" class="btn btn-primary">En savoir plus</a>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-4">
+         <div class="card bg-light mb3">
+            <div class="card-header text-center">
+               1 chambres, <b>4 nuits</b> <br>
+               <small>Pas encore noté</small>
+            </div>
+            <img src="http://placehold.it/1000x400" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
+            <div class="card-body">
+               <h4 class="card-title">
+                  Cave
+               </h4>
+               <p class="card-text">
+                  Venez vous reposer et profitez du confort de la cave a trésors de l'illustre Dragon of the Night. AKA CONSIGUR
+               </p>
+               <a href="#" class="btn btn-primary">En savoir plus</a>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-4">
+         <div class="card bg-light mb3">
+            <div class="card-header text-center">
+               2 chambres, <b>7 nuits</b> <br>
+               <small>Pas encore noté</small>
+            </div>
+            <img src="http://placehold.it/1000x400" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
+            <div class="card-body">
+               <h4 class="card-title">
+                  Appartement saisonier
+               </h4>
+               <p class="card-text">
+                  Un espace de vacances avec une vue magnifique sur les pistes de skis
+               </p>
+               <a href="#" class="btn btn-primary">En savoir plus</a>
+            </div>
+         </div>
+      </div>
+   </div>
+   <h2 class="h1 mt-5 mb-4">Nos propriétaires Reccommandées</h2>
+   <div class="row">
+      <div class="col">
+         <div class="card border-secondary mb-3">
+            <div class="card-body">
+               <h4 class="card-title">Marie Claude</h4>
+               <hr>
+               <div class="card-text">
+                  <img src="http://placehold.it/64x64" alt="Avatar de Jean Philippe" class="float-left mr-3">
+                  <p>Passionnée par sa ville et l'art de recevoir, Marie-Claude vous fera découvrir les joyaux cachés de la région.</p>
+                  <a href="#" class="btn btn-success float-right">En savoir plus!</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col">
+         <div class="card border-secondary mb-3">
+            <div class="card-body">
+               <h4 class="card-title">Isabelle Savard</h4>
+               <hr>
+               <div class="card-text">
+                  <img src="http://placehold.it/64x64" alt="Avatar de Jean Philippe" class="float-left mr-3">
+                  <p>Isabelle, experte en gastronomie locale, vous invite à découvrir les saveurs uniques de sa région. Passionnée d'histoire et de culture, elle saura vous guider vers des expériences inoubliables.</p>
+                  <a href="#" class="btn btn-success float-right">En savoir plus!</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col">
+         <div class="card border-secondary mb-3">
+            <div class="card-body">
+               <h4 class="card-title">Sacripant Villeneuve</h4>
+               <hr>
+               <div class="card-text">
+                  <img src="http://placehold.it/64x64" alt="Avatar de Jean Philippe" class="float-left mr-3">
+                  <p>Sacripant, un passionné d'aventure et de plein air, vous emmènera à la découverte des trésors cachés de la nature. Son enthousiasme et sa connaissance de la faune et de la flore locales enrichiront votre séjour.</p>
+                  <a href="#" class="btn btn-success float-right">En savoir plus!</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 {% endblock %}
