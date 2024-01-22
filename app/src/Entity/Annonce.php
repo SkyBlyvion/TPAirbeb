@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -49,6 +51,22 @@ class Annonce
 
     #[ORM\Column]
     private ?int $taille = null;
+
+    #[ORM\OneToMany(mappedBy: 'Anonce', targetEntity: Reservation::class)]
+    #[ORM\JoinColumn(name: 'Annonce', referencedColumnName: 'UniqueId')]
+    private Collection $reservations;
+
+    #[ORM\ManyToOne(inversedBy: 'annonces')]
+    private ?Type $annonce = null;
+
+    #[ORM\ManyToMany(targetEntity: Equipement::class, inversedBy: 'annonces')]
+    private Collection $equipements;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+        $this->equipements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -195,6 +213,72 @@ class Annonce
     public function setTaille(int $taille): static
     {
         $this->taille = $taille;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getAnnonce() === $this) {
+                $reservation->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAnnonce(): ?Type
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(?Type $annonce): static
+    {
+        $this->annonce = $annonce;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Equipement>
+     */
+    public function getEquipements(): Collection
+    {
+        return $this->equipements;
+    }
+
+    public function addEquipement(Equipement $equipement): static
+    {
+        if (!$this->equipements->contains($equipement)) {
+            $this->equipements->add($equipement);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipement(Equipement $equipement): static
+    {
+        $this->equipements->removeElement($equipement);
 
         return $this;
     }

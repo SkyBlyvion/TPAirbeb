@@ -29,6 +29,14 @@ class Reservation
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $status = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(name: 'utilisateur', referencedColumnName: 'UniqueId')]
+    private ?Utilisateur $utilisateur = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    private ?Annonce $annonce = null;
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +98,30 @@ class Reservation
     public function setStatus(?string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getUtilisateurId(): ?Utilisateur
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateurId(?Utilisateur $utilisateur): static
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getAnnonce(): ?Annonce
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(?Annonce $annonce): static
+    {
+        $this->annonce = $annonce;
 
         return $this;
     }
