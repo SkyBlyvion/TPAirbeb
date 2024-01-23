@@ -15,9 +15,6 @@ class Type
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $uniqueId = null;
-
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
@@ -34,24 +31,13 @@ class Type
         return $this->id;
     }
 
-    public function getUniqueId(): ?int
-    {
-        return $this->uniqueId;
-    }
 
-    public function setUniqueId(int $uniqueId): static
-    {
-        $this->uniqueId = $uniqueId;
-
-        return $this;
-    }
-
-    public function getLabelType(): ?string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    public function setLabelType(string $label): static
+    public function setLabel(string $label): self
     {
         $this->label = $label;
 
@@ -66,25 +52,25 @@ class Type
         return $this->annonces;
     }
 
-    public function addAnnonce(Annonce $annonce): static
+    public function addAnnonce(Annonce $annonce): self
     {
         if (!$this->annonces->contains($annonce)) {
             $this->annonces->add($annonce);
-            $annonce->setAnnonce($this);
+            $annonce->setType($this);
         }
-
+    
         return $this;
     }
-
-    public function removeAnnonce(Annonce $annonce): static
+    
+    public function removeAnnonce(Annonce $annonce): self
     {
         if ($this->annonces->removeElement($annonce)) {
             // set the owning side to null (unless already changed)
-            if ($annonce->getAnnonce() === $this) {
-                $annonce->setAnnonce(null);
+            if ($annonce->getType() === $this) {
+                $annonce->setType(null);
             }
         }
-
+    
         return $this;
     }
 }

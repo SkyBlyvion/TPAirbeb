@@ -14,8 +14,6 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $uniqueId = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateDebut = null;
@@ -30,7 +28,7 @@ class Reservation
     private ?string $status = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
-    #[ORM\JoinColumn(name: 'utilisateur', referencedColumnName: 'UniqueId')]
+
     private ?Utilisateur $utilisateur = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
@@ -42,17 +40,6 @@ class Reservation
         return $this->id;
     }
 
-    public function getUniqueId(): ?int
-    {
-        return $this->uniqueId;
-    }
-
-    public function setUniqueId(int $uniqueId): static
-    {
-        $this->uniqueId = $uniqueId;
-
-        return $this;
-    }
 
     public function getDateDebut(): ?\DateTimeInterface
     {

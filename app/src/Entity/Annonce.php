@@ -16,9 +16,6 @@ class Annonce
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $uniqueId = null;
-
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
@@ -52,12 +49,11 @@ class Annonce
     #[ORM\Column]
     private ?int $taille = null;
 
-    #[ORM\OneToMany(mappedBy: 'Anonce', targetEntity: Reservation::class)]
-    #[ORM\JoinColumn(name: 'Annonce', referencedColumnName: 'UniqueId')]
+    #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Reservation::class)]
     private Collection $reservations;
 
-    #[ORM\ManyToOne(inversedBy: 'annonces')]
-    private ?Type $annonce = null;
+    #[ORM\ManyToOne(targetEntity: Type::class, inversedBy: 'annonces')]
+    private ?Type $type = null;
 
     #[ORM\ManyToMany(targetEntity: Equipement::class, inversedBy: 'annonces')]
     private Collection $equipements;
@@ -73,17 +69,6 @@ class Annonce
         return $this->id;
     }
 
-    public function getUniqueId(): ?int
-    {
-        return $this->uniqueId;
-    }
-
-    public function setUniqueId(int $uniqueId): static
-    {
-        $this->uniqueId = $uniqueId;
-
-        return $this;
-    }
 
     public function getTitre(): ?string
     {
@@ -247,15 +232,15 @@ class Annonce
         return $this;
     }
 
-    public function getAnnonce(): ?Type
+    public function getType(): ?Type
     {
-        return $this->annonce;
+        return $this->type;
     }
-
-    public function setAnnonce(?Type $annonce): static
+    
+    public function setType(?Type $type): self
     {
-        $this->annonce = $annonce;
-
+        $this->type = $type;
+    
         return $this;
     }
 

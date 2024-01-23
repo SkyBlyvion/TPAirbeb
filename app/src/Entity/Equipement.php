@@ -15,9 +15,6 @@ class Equipement
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $uniqueId = null;
-
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
@@ -34,17 +31,6 @@ class Equipement
         return $this->id;
     }
 
-    public function getUniqueId(): ?int
-    {
-        return $this->uniqueId;
-    }
-
-    public function setUniqueId(int $uniqueId): static
-    {
-        $this->uniqueId = $uniqueId;
-
-        return $this;
-    }
 
     public function getLabel(): ?string
     {
