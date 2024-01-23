@@ -29,7 +29,7 @@ class Reservation
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
 
-    private ?Utilisateur $utilisateur = null;
+    private ?User $User = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?Annonce $annonce = null;
@@ -89,14 +89,14 @@ class Reservation
         return $this;
     }
 
-    public function getUtilisateurId(): ?Utilisateur
+    public function getUserId(): ?User
     {
-        return $this->utilisateur;
+        return $this->User;
     }
 
-    public function setUtilisateurId(?Utilisateur $utilisateur): static
+    public function setUserId(?User $User): static
     {
-        $this->utilisateur = $utilisateur;
+        $this->User = $User;
 
         return $this;
     }
