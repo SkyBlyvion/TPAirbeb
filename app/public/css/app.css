@@ -43,11 +43,16 @@
     width:22%;
 }
 
-input[type="text"]{
+input[type="texta"]{
     background:none;
     border:none;
     padding:0.1rem 0 0 0;
 }
+
+.custom-border {
+    background: #ffffff
+}
+
 
 input[type="text"]:focus{
     outline:none;
@@ -97,31 +102,3 @@ input[type="text"]:focus{
     background:transparent;
 }
 
-/* Avatar for accounts */
-/*
-div.my-title{
-    padding: 2em;
-    background-size: cover;
-    background-position: center center;
-}
-
-div.my-title h1, div.my-title p {
-    color: white;
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
-}
-
-.avatar {
-    max-width: 128px;
-    max-height: 128px;
-    border-radius: 50%;
-}
-
-.avatar-medium {
-    max-width: 64px;
-    max-height: 64px;
-}
-
-.avatar-mini {
-    max-width: 24px;
-    max-height: 24px;
-} */
