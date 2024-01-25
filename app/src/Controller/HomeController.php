@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
@@ -21,12 +22,22 @@ class HomeController extends AbstractController
         return $this->render("annonces/annonce.html.twig", []);
     }
 
-    // #[Route("/page/{numPage}", name: "page")]
-    // public function page(string $numPage)
-    // {
-        
-    //     return new Response($this->html("Bienvenue sur la page", "page", $numPage));
-    // }
+    /**
+     * Permet d'afficher le profil de l'utilisateur connececté
+     *
+     * @Route("/account", name="account_index")
+     * @IsGranted("ROLE_USER")
+     *
+     * @return Response
+     */
+    #[Route("/profile", name: "profile")]
+    public function profile()
+    {
+        return $this->render("account/profile.html.twig", [
+            'user' => $this->getUser()
+        ]);
+    }
+ 
 
   
     /**

@@ -18,7 +18,7 @@
             <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
          </li>
          <li class="nav-item">
-            <a class="nav-link" href="{{ path('annonces') }}">Annonces</a>
+            <a class="nav-link" href="{{ path('app_annonce_index') }}">Annonces</a>
          </li>
       </ul>
       <ul class="navbar-nav ml-auto">
@@ -27,9 +27,9 @@
             
             {# TODO: ajouter le form insription et login / si connecté dropdown sinon inscription #}
             <div>
-               <a href="{{ path('accueil') }}" class="">Créer une annonce</a>
+               <a href="{{ path('app_annonce_new') }}" class="">Créer une annonce</a>
                <span class="pipe"></span>
-               <a href="{{ path('accueil') }}" class="">Mon compte</a>
+               <a href="{{ path('profile') }}" class="">Mon compte</a>
                <span class="pipe"></span>
                <a href="{{ path('accueil') }}" class="">Modifier mon profil</a>
                <span class="pipe"></span>
