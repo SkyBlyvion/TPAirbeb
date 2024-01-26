@@ -1,56 +1,46 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Annonce index{% endblock %}
-
+{% block title %}Annonces index{% endblock %}
 {% block body %}
-    <h1>Annonce index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Countryname</th>
-                <th>Cityname</th>
-                <th>Streetname</th>
-                <th>Image_path</th>
-                <th>Image_slug</th>
-                <th>Prix</th>
-                <th>Nombre_couchage</th>
-                <th>Nombre_piece</th>
-                <th>Taille</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<div class="container">
+    <h1>Annonces index</h1>
+    <div class="row">
         {% for annonce in annonces %}
-            <tr>
-                <td>{{ annonce.id }}</td>
-                <td>{{ annonce.title }}</td>
-                <td>{{ annonce.description }}</td>
-                <td>{{ annonce.countryname }}</td>
-                <td>{{ annonce.cityname }}</td>
-                <td>{{ annonce.streetname }}</td>
-                <td>{{ annonce.imagePath }}</td>
-                <td>{{ annonce.imageSlug }}</td>
-                <td>{{ annonce.prix }}</td>
-                <td>{{ annonce.nombreCouchage }}</td>
-                <td>{{ annonce.nombrePiece }}</td>
-                <td>{{ annonce.taille }}</td>
-                {# <td>{{ annonce.user.email }}</td> #}
-                <td>
-                    <a class="text-primary" href="{{ path('app_annonce_show', {'id': annonce.id}) }}">show</a>
-                    <a class="text-primary" href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">edit</a>
-                </td>
-            </tr>
+            <div class="col-sm-4 mt-3"> <!-- Adjust the column size as needed -->
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset('images/uploads/' ~ annonce.imagePath) }}" class="card-img-top" alt="image de maison">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ annonce.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ annonce.cityname }} - {{ annonce.countryname }}</h6>
+                        <p class="card-text text-primary">{{ annonce.prix }} € par nuit</p>
+                        <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn btn-primary">Voir détails</a>
+                    </div>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="13">no records found</td>
-            </tr>
+            <div class="col">No records found</div>
         {% endfor %}
-        </tbody>
-    </table>
-
+    </div>
     <a href="{{ path('app_annonce_new') }}">Create new</a>
+</div>
 {% endblock %}
+{# 
+<tr>
+   <td>{{ annonce.id }}</td>
+   <td>{{ annonce.title }}</td>
+   <td>{{ annonce.type.label}}</td>
+   <td>{{ annonce.description }}</td>
+   <td>{{ annonce.countryname }}</td>
+   <td>{{ annonce.cityname }}</td>
+   <td>{{ annonce.streetname }}</td>
+   <td>{{ annonce.imagePath }}</td>
+   <td>{{ annonce.prix }}</td>
+   <td>{{ annonce.nombreCouchage }}</td>
+   <td>{{ annonce.nombrePiece }}</td>
+   <td>{{ annonce.taille }}</td>
+   <td>{{ annonce.user.email }}</td>
+   <td>
+      <a class="text-primary" href="{{ path('app_annonce_show', {'id': annonce.id}) }}">show</a>
+      <a class="text-primary" href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">edit</a>
+   </td>
+</tr>
+#}

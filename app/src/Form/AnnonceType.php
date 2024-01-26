@@ -29,11 +29,11 @@ class AnnonceType extends AbstractType
             ->add('taille')
             ->add('type', EntityType::class, [
                 'class' => Type::class,
-'choice_label' => 'id',
+'choice_label' => 'label',
             ])
             ->add('equipements', EntityType::class, [
                 'class' => Equipement::class,
-'choice_label' => 'id',
+'choice_label' => 'label',
 'multiple' => true,
             ])
         ;

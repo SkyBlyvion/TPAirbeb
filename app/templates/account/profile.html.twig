@@ -11,8 +11,10 @@
                 <h1>{{ user.name }}</h1>
                 {% if user is same as(app.user) %}
                     <div class="mt-3">
-                        {# <a href="{{ path('account_profile') }}" class="btn btn-primary mr-2 mb-2">Modifer mes informations</a>
-                        <a href="{{ path('account_password') }}" class="btn btn-primary mb-2">Modifier mon mot de passe</a> #}
+                        {# TODO: bouton pour modifier et modifier son mot de passe / faire les vues#}
+                        <a href="{{ path('accueil') }}" class="btn btn-primary mr-2 mb-2">Modifer mes informations</a>
+                        <a href="{{ path('accueil') }}" class="btn btn-primary mb-2">Modifier mon mot de passe</a>
+                        
                     </div>
                 {% endif %}
             </div>
@@ -20,14 +22,14 @@
 
         <div class="mt-3"></div>
 
-        {# {{ user.description | raw }} #}
+        {# {{ user.annonces | raw }} #}
 
         <hr>
 
         <h2>Les annonces de {{ user.name }}</h2>
 
         {% if user.annonces | length > 0 %}
-            <div class="row">
+            <div class="row ">
                 {% for annonce in user.annonces %}
                     {% include('annonce/cards.html.twig') %}
                 {% endfor %}

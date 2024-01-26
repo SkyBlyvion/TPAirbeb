@@ -1,21 +1,9 @@
-{# 
-<div class="container">
-  <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{ annonce.title }}</h5>
-      <p class="card-text">{{ annonce.description }}</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-body-secondary">Last updated 3 mins ago</small>
-    </div>
-  </div>
-</div> #}
-<div class="card" style="width: 18rem;">
+<div class="card " style="width: 18rem;">
   <img src="images/uploads/{{ annonce.imagePath }}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h5 class="card-title">{{ annonce.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ annonce.cityname }} - {{ annonce.countryname }}</h6>
+    <p class="card-text text-primary">{{ annonce.prix }} € par nuit</p>
+    <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn btn-primary">Voir détails</a>
   </div>
 </div>

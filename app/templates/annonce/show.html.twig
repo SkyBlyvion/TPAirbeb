@@ -59,8 +59,8 @@
     </table>
 
     <a href="{{ path('app_annonce_index') }}" class="text-primary">Click me to go back to the list</a>
-
-    <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">edit</a>
+    <span class="pipe"></span>
+    <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}" class="text-primary">edit</a>
 
     {{ include('annonce/_delete_form.html.twig') }}
 {% endblock %}
