@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Page de {{ user.name }}{% endblock %}
@@ -25,16 +26,16 @@
 
         <h2>Les annonces de {{ user.name }}</h2>
 
-        {# {% if user.ads | length > 0 %}
+        {% if user.annonces | length > 0 %}
             <div class="row">
-                {% for ad in user.ads %}
-                    {% include('ad/_ad.html.twig') %}
+                {% for annonce in user.annonces %}
+                    {% include('annonce/cards.html.twig') %}
                 {% endfor %}
             </div>
         {% else %}
             <div class="alert alert-warning">
                 <p><b>{{ user.name }} n'a pas encore d'annonces sur le site!</b></p>
             </div>
-        {% endif %} #}
+        {% endif %}
     </div>
 {% endblock %}

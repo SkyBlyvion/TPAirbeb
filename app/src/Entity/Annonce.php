@@ -8,8 +8,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\User;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: AnnonceRepository::class)]
+#[Vich\Uploadable] 
 class Annonce
 {
     #[ORM\Id]
@@ -61,6 +63,9 @@ class Annonce
 
     #[ORM\ManyToOne(inversedBy: 'annonces')]
     private ?User $user = null;
+
+    #[Vich\UploadableField(mapping: 'house', fileNameProperty: 'image_path')]
+    private $imageFile;
 
     public function __construct()
     {
@@ -144,6 +149,16 @@ class Annonce
         $this->image_path = $image_path;
 
         return $this;
+    }
+
+    public function getImageFile(): ?\Stringable
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?\Stringable $imageFile): void
+    {
+        $this->imageFile = $imageFile;
     }
 
     public function getImageSlug(): ?string

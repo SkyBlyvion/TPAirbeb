@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class AnnonceType extends AbstractType
 {
@@ -20,7 +21,7 @@ class AnnonceType extends AbstractType
             ->add('countryname')
             ->add('cityname')
             ->add('streetname')
-            ->add('image_path')
+            ->add('imageFile', VichImageType::class)
             ->add('image_slug')
             ->add('prix')
             ->add('nombre_couchage')

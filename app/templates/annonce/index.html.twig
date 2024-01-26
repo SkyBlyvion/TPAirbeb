@@ -38,6 +38,7 @@
                 <td>{{ annonce.nombreCouchage }}</td>
                 <td>{{ annonce.nombrePiece }}</td>
                 <td>{{ annonce.taille }}</td>
+                {# <td>{{ annonce.user.email }}</td> #}
                 <td>
                     <a class="text-primary" href="{{ path('app_annonce_show', {'id': annonce.id}) }}">show</a>
                     <a class="text-primary" href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">edit</a>
