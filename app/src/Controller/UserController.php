@@ -6,11 +6,12 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -91,4 +92,22 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
+    // #[Route('/become-author', name: 'app_become_author')]
+    // public function becomeAuthor(EntityManagerInterface $entityManager, TokenStorageInterface $tokenStorage): Response
+    // {
+    //     $user = $tokenStorage->getToken()->getUser();
+        
+
+    //     // Add ROLE_AUTHOR to the user and save
+    //     $user->setRoles(array_unique(array_merge($user->getRoles(), ['ROLE_AUTHOR'])));
+        
+    //     $entityManager->persist($user);
+    //     $entityManager->flush();
+
+    //     $this->addFlash('success', 'Congratulations, you are now an author.');
+        
+    //     return $this->redirectToRoute('default_route'); // Replace with a route you want to redirect to after the role is added
+    // }
 }

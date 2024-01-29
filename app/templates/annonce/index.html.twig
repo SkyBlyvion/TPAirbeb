@@ -3,7 +3,10 @@
 {% block body %}
 <div class="container">
     <h1>Annonces index</h1>
+    {# Ici, on vérifie si l'utilisateur a le rôle ADMIN #}
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('app_annonce_new') }}" class="btn btn-primary mt-3">Create new</a>
+    {% endif %}
     <div class="row">
         {% for annonce in annonces %}
             <div class="col-sm-4 mt-3"> <!-- Adjust the column size as needed -->
