@@ -3,6 +3,7 @@
 {% block body %}
 <div class="container">
     <h1>Annonces index</h1>
+    <a href="{{ path('app_annonce_new') }}" class="btn btn-primary mt-3">Create new</a>
     <div class="row">
         {% for annonce in annonces %}
             <div class="col-sm-4 mt-3"> <!-- Adjust the column size as needed -->
@@ -20,7 +21,7 @@
             <div class="col">No records found</div>
         {% endfor %}
     </div>
-    <a href="{{ path('app_annonce_new') }}">Create new</a>
+
 </div>
 {% endblock %}
 {# 

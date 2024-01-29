@@ -2,26 +2,31 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Entity\Annonce;
+use App\Repository\AnnonceRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     #[Route("/accueil", name: "accueil")]
-    public function home()
+    public function home(AnnonceRepository $annonceRepository): Response
     {
-        return $this->render("home/home.html.twig", []);
+        $annonce = New Annonce();
+        return $this->render("home/home.html.twig", [
+            'annonces' => $annonceRepository->findAll(),
+        ]);
     }
 
 
-    #[Route("/annonces", name: "annonces")]
-    public function index()
-    {
-        return $this->render("annonces/annonce.html.twig", []);
-    }
-
+    // #[Route("/annonces", name: "annonces")]
+    // public function index()
+    // {
+    //     return $this->render("annonces/annonce.html.twig", []);
+    // }
+ 
     /**
      * Permet d'afficher le profil de l'utilisateur connececté
      *

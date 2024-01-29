@@ -22,7 +22,6 @@ class AnnonceType extends AbstractType
             ->add('cityname')
             ->add('streetname')
             ->add('imageFile', VichImageType::class)
-            ->add('image_slug')
             ->add('prix')
             ->add('nombre_couchage')
             ->add('nombre_piece')

@@ -52,6 +52,20 @@
                 <td>{{ annonce.taille }}</td>
             </tr>
             <tr>
+                <th>Équipements</th>
+                <td>
+                    {% if annonce.equipements|length > 0 %}
+                        <ul>
+                            {% for equipement in annonce.equipements %}
+                                <li>{{ equipement.label }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        Pas d'Équipements
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
                 <th>Autheur</th>
                 <td>{{ annonce.user.email }}</td>
             </tr>
