@@ -39,7 +39,7 @@ class HomeController extends AbstractController
     public function profile()
     {
         return $this->render("account/profile.html.twig", [
-            'user' => $this->getUser()
+            'user' => $this->getUser(),
         ]);
     }
  

@@ -8,17 +8,15 @@
         <div class="row align-items-center">
             
             <div class="col-9">
-                <h1>{{ user.name }}</h1>
+                <h1>Nom de compte: {{ user.name }}</h1>
                 {% if user is same as(app.user) %}
                     <div class="mt-3">
-                        {# TODO: bouton pour modifier et modifier son mot de passe / faire les vues#}
-                        <a href="{{ path('accueil') }}" class="btn btn-primary mr-2 mb-2">Modifer mes informations</a>
-                        <a href="{{ path('accueil') }}" class="btn btn-primary mb-2">Modifier mon mot de passe</a>
-                        
+                        <a href="{{ path('app_user_edit', {'id': app.user.id}) }}" class="btn btn-primary mr-2 mb-2">Modifier mes informations</a>
                     </div>
                 {% endif %}
             </div>
         </div>
+
 
         <div class="mt-3"></div>
 
