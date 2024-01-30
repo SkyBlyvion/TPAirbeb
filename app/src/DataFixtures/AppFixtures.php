@@ -102,7 +102,7 @@ class AppFixtures extends Fixture
             
 
             $reservation->setAnnonce($annonce);
-            $reservation->setUserId($user);
+            $reservation->setUser($user);
             $reservation->setHasAnimal($faker->boolean);
             $reservation->setStatus($faker->word(3));
             $reservation->setDateFin($faker->dateTimeBetween('now', '+1 month'));

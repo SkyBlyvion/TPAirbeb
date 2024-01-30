@@ -29,6 +29,8 @@
                {% if is_granted('ROLE_AUTHOR') %} 
                <a href="{{ path('app_annonce_new') }}" class="">Créer une annonce</a>
                <span class="pipe"></span>
+               <a href="{{ path('app_reservation_index') }}" class="">Voir mes réservations</a>
+               <span class="pipe"></span>
                {% endif %}
                <a href="{{ path('profile') }}" class="">Mon compte</a>
                <span class="pipe"></span>

@@ -25,7 +25,7 @@
                <div class="d-flex justify-content-between align-items-center">
                   <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn btn-primary">Détails</a>
                   {# TODO: Reservation route #}
-                  <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn btn-success">Réservez</a>
+                  <a href="{{ path('app_reservation_new', {'id': annonce.id}) }}" class="btn btn-success">Réservez</a>
                </div>
             </div>
          </div>

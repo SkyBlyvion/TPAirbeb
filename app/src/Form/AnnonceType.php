@@ -32,8 +32,10 @@ class AnnonceType extends AbstractType
             ])
             ->add('equipements', EntityType::class, [
                 'class' => Equipement::class,
-'choice_label' => 'label',
-'multiple' => true,
+                'choice_label' => 'label',
+                'multiple' => true,
+                'help' => 'Pour sélectionner les équipements, CTRL + CLICK souris, puis flèches pour naviguer.'
+
             ])
         ;
     }
