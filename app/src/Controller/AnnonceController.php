@@ -27,6 +27,8 @@ class AnnonceController extends AbstractController
     #[Route('/new', name: 'app_annonce_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
+        // Vérifiez si l'utilisateur a le rôle AUTHOR
+        $this->denyAccessUnlessGranted('ROLE_AUTHOR');
         $annonce = new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
@@ -88,8 +90,12 @@ class AnnonceController extends AbstractController
     #[Route('/{id}/edit', name: 'app_annonce_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Annonce $annonce, EntityManagerInterface $entityManager): Response
     {
+        // Vérifiez si l'utilisateur a le rôle AUTHOR
+        $this->denyAccessUnlessGranted('ROLE_AUTHOR');
+
         $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();

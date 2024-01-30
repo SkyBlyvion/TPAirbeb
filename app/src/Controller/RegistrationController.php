@@ -29,8 +29,12 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            // set default role
-            $user->setRoles(['ROLE_USER']);
+            // Check if the 'register as author' checkbox was selected
+            if ($form->get('registerAsAuthor')->getData()) {
+                $user->setRoles(['ROLE_AUTHOR']);
+            } else {
+                $user->setRoles(['ROLE_USER']);
+            }
 
             //persits
             $entityManager->persist($user);

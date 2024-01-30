@@ -25,14 +25,11 @@
          {% if app.user %}
          <li class="">
             <div>
-               {# Bouton pour devenir auteur, si l'utilisateur n'est pas déjà auteur #}
-               {#{% if not is_granted('ROLE_AUTHOR') %}
-                route pour devenir auteur 
-               <a href="{{ path('app_annonce_index') }}" >Devenir Annonceur</a>
-               <span class="pipe"></span>
-               {% endif %}#}
+               {# Bouton pour creer une annonce ##}
+               {% if is_granted('ROLE_AUTHOR') %} 
                <a href="{{ path('app_annonce_new') }}" class="">Créer une annonce</a>
                <span class="pipe"></span>
+               {% endif %}
                <a href="{{ path('profile') }}" class="">Mon compte</a>
                <span class="pipe"></span>
                <a href="{{ path('app_logout') }}" class="">Déconnexion</a>

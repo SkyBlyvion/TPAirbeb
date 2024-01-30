@@ -23,6 +23,12 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class)
             ->add('name') 
             ->add('firstname')
+            ->add('registerAsAuthor', CheckboxType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Inscription en tant qu\'annonceur',
+                'help' => 'Cocher cette case si vous souhaitez vous inscrire en tant qu\'annonceur.'
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                                 'mapped' => false,
                 'constraints' => [

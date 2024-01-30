@@ -22,7 +22,11 @@
                <h5 class="card-title">{{ annonce.title }}</h5>
                <h6 class="card-subtitle mb-2 text-muted">{{ annonce.cityname }} - {{ annonce.countryname }}</h6>
                <p class="card-text text-primary">{{ annonce.prix }} € par nuit</p>
-               <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn btn-primary">Voir détails</a>
+               <div class="d-flex justify-content-between align-items-center">
+                  <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn btn-primary">Détails</a>
+                  {# TODO: Reservation route #}
+                  <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn btn-success">Réservez</a>
+               </div>
             </div>
          </div>
       </div>
