@@ -78,7 +78,8 @@
     {# Ici, on vérifie si l'utilisateur a le rôle ADMIN #}
     {% if is_granted('ROLE_ADMIN') %}
         <div class="d-flex justify-content-center">
-            <a href="{{ path('app_annonce_index') }}" class="btn btn-info mr-5">Faire une réservation</a>
+
+            <a href="{{ path('app_reservation_new', {'id': annonce.id}) }}" class="btn btn-info mr-2">Réservez</a>
             <a href="{{ path('app_annonce_index') }}" class="btn btn-primary mr-5 ">Click pour retourner a la liste</a>
             <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}" class="btn btn-primary ml-2 bg-success">Edit</a>
             {{ include('annonce/_delete_form.html.twig') }}
@@ -89,7 +90,8 @@
     <div class="d-flex justify-content-center">
         {# TODO: crud reservation and update the commented line  #}
         {# <a href="{{ path('app_reservation_new', {'id': annonce.id}) }}" class="btn btn-primary">Make a reservation</a> #}
-        <a href="{{ path('app_annonce_index') }}" class="btn btn-info mr-2">Faire une réservation</a>
+
+        <a href="{{ path('app_reservation_new', {'id': annonce.id}) }}" class="btn btn-info mr-2">Réservez</a>
         <a href="{{ path('app_annonce_index') }}" class="btn btn-primary mr-2">Click moi pour retourner a la liste</a>
     </div>
 

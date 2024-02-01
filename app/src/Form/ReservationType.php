@@ -19,14 +19,6 @@ class ReservationType extends AbstractType
             ->add('dateFin')
             ->add('hasAnimal')
             ->add('status')
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-'choice_label' => 'id',
-            ])
-            ->add('annonce', EntityType::class, [
-                'class' => Annonce::class,
-'choice_label' => 'id',
-            ])
         ;
     }
 

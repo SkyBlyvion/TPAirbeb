@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Annonce;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
-use App\Repository\ReservationRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/reservation')]
 class ReservationController extends AbstractController
@@ -26,6 +27,14 @@ class ReservationController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $reservation = new Reservation();
+
+        $user = $this->getUser();
+        $annonceId = $request->get('id');
+        $annonce = $entityManager->getRepository(Annonce::class)->find($annonceId);
+        
+        $reservation->setAnnonce($annonce);
+        $reservation->setUser($this->getUser());
+
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
@@ -33,7 +42,7 @@ class ReservationController extends AbstractController
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_annonce_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('reservation/new.html.twig', [
