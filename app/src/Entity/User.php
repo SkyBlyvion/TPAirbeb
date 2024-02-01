@@ -44,10 +44,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Annonce::class)]
     private Collection $annonces;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Favoris::class)]
+    private Collection $annonce;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
         $this->annonces = new ArrayCollection();
+        $this->annonce = new ArrayCollection();
     }
 
 
@@ -199,6 +203,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($annonce->getUser() === $this) {
                 $annonce->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favoris>
+     */
+    public function getAnnonceId(): Collection
+    {
+        return $this->annonce;
+    }
+
+    public function addAnnonceId(Favoris $annonceId): static
+    {
+        if (!$this->annonce->contains($annonceId)) {
+            $this->annonce->add($annonceId);
+            $annonceId->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonceId(Favoris $annonceId): static
+    {
+        if ($this->annonce->removeElement($annonceId)) {
+            // set the owning side to null (unless already changed)
+            if ($annonceId->getUser() === $this) {
+                $annonceId->setUser(null);
             }
         }
 
