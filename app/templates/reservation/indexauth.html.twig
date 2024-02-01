@@ -4,11 +4,19 @@
 
 {% block body %}
     <h1>Reservation des utilisateurs</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>Admins : Vous pouvez modifier toutes les réservations.</p>
+    {% else %}
+        <p>Cher "{{ app.user.name }}": Vous ne pouvez modifier que vos réservations.</p>
+    {% endif %}
+
 
     <table class="table">
         <thead>
             <tr>
                 <th>Titre de l'Annonce</th>
+                <th>Qui a réservé</th>
+                <th>Qui est l'annonceur</th>
                 <th>Date de Debut</th>
                 <th>Date de Fin</th>
                 <th>Has Animal</th>
@@ -20,6 +28,8 @@
         {% for reservation in reservations %}
             <tr>
                 <td>{{ reservation.annonce.title }}</td>
+                <td>{{ reservation.user.name }}</td>
+                <td>{{ reservation.annonce.user.name }}</td>
                 <td>{{ reservation.dateDebut ? reservation.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ reservation.dateFin ? reservation.dateFin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ reservation.hasAnimal ? 'Yes' : 'No' }}</td>

@@ -15,15 +15,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/reservation')]
 class ReservationController extends AbstractController
 {
-
+    
 
     #[Route('/indexauth', name: 'app_reservation_index', methods: ['GET'])]
     public function index(ReservationRepository $reservationRepository): Response
     {
+        $user = $this->getUser();
+        
+        // Vérifiez si l'utilisateur a le rôle AUTHOR
+        $this->denyAccessUnlessGranted('ROLE_AUTHOR');
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $reservations = $reservationRepository->findAll(); // Admins see all reservations
+        } else {
+            $reservations = $reservationRepository->findByAnnonceOwner($user); // Authors see only their reservations
+        }
+
         return $this->render('reservation/indexauth.html.twig', [
-            'reservations' => $reservationRepository->findAll(),
+            'reservations' => $reservations, // Pass the filtered reservations here
         ]);
     }
+
 
 
     #[Route('/', name: 'app_reservation_index_user', methods: ['GET'])]
@@ -77,8 +89,24 @@ class ReservationController extends AbstractController
     #[Route('/{id}/edit', name: 'app_reservation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
+        // recupérer l'id de l'utilisateur connecté
+        $user = $this->getUser();
+
+        // // Vérifier si l'utilisateur connecté est le créateur de la réservation
+        // if ($reservation->getUser() !== $user) {
+        // // Si ce n'est pas le cas, renvoyez une réponse d'accès refusé ou redirigez vers une autre page
+        // throw $this->createAccessDeniedException('Vous ne pouvez pas modifier cette réservation.');
+        // }
+
+        // Vérifier si l'utilisateur connecté est le créateur de la réservation ou un admin
+        if ($reservation->getUser() !== $user && !$this->isGranted('ROLE_ADMIN')) {
+        // Si ce n'est pas le cas, renvoyez une réponse d'accès refusé ou redirigez vers une autre page
+        throw $this->createAccessDeniedException('Vous ne pouvez pas modifier cette réservation.');
+        }
+
+
         $form = $this->createForm(ReservationType::class, $reservation);
-        $form->handleRequest($request);
+        $form->handleRequest($request); 
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();

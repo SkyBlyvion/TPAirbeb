@@ -35,6 +35,22 @@ class ReservationRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @param User $user
+     * @return Reservation[] Returns an array of Reservation objects
+     */
+    public function findByAnnonceOwner(User $user): array
+    {
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.annonce', 'a')
+            ->where('a.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
+    }
+
+    
+
 //    /**
 //     * @return Reservation[] Returns an array of Reservation objects
 //     */
