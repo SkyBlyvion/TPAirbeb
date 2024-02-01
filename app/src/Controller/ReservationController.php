@@ -15,11 +15,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/reservation')]
 class ReservationController extends AbstractController
 {
-    #[Route('/', name: 'app_reservation_index', methods: ['GET'])]
+
+
+    #[Route('/indexauth', name: 'app_reservation_index', methods: ['GET'])]
     public function index(ReservationRepository $reservationRepository): Response
     {
-        return $this->render('reservation/index.html.twig', [
+        return $this->render('reservation/indexauth.html.twig', [
             'reservations' => $reservationRepository->findAll(),
+        ]);
+    }
+
+
+    #[Route('/', name: 'app_reservation_index_user', methods: ['GET'])]
+    public function userindex(ReservationRepository $reservationRepository): Response
+    {
+        $user = $this->getUser();
+
+        $reservations = $reservationRepository->findByUser($user);
+
+        return $this->render('reservation/index.html.twig', [
+            'reservations' => $reservations,
         ]);
     }
 
