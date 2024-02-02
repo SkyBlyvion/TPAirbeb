@@ -1,4 +1,4 @@
-INSERT INTO airbebdata.reservation (user_id,annonce_id,date_debut,date_fin,has_animal,status) VALUES
+INSERT INTO reservation (user_id,annonce_id,date_debut,date_fin,has_animal,status) VALUES
 	 (1,57,'2024-01-30 11:30:00','2024-02-02 11:30:00',1,'yes status'),
 	 (1,48,'2024-01-30 12:03:00','2024-02-11 12:03:00',0,'no status'),
 	 (1,48,'2024-02-01 09:19:00','2024-02-08 09:19:00',1,'1'),
