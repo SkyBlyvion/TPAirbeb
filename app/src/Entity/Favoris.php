@@ -13,13 +13,13 @@ class Favoris
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'annonce')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    private ?User $User = null;
 
-    #[ORM\ManyToOne(inversedBy: 'favoris')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Annonce $annonce = null;
+    private ?Annonce $Annonce = null;
 
     public function getId(): ?int
     {
@@ -28,24 +28,24 @@ class Favoris
 
     public function getUser(): ?User
     {
-        return $this->user;
+        return $this->User;
     }
 
-    public function setUser(?User $user): static
+    public function setUser(?User $User): static
     {
-        $this->user = $user;
+        $this->User = $User;
 
         return $this;
     }
 
     public function getAnnonce(): ?Annonce
     {
-        return $this->annonce;
+        return $this->Annonce;
     }
 
-    public function setAnnonce(?Annonce $annonce): static
+    public function setAnnonce(?Annonce $Annonce): static
     {
-        $this->annonce = $annonce;
+        $this->Annonce = $Annonce;
 
         return $this;
     }
