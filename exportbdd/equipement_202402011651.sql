@@ -1,5 +1,5 @@
 INSERT INTO equipement (label) VALUES
-	 ('pariatur'),
+	 ('Boite à couture'),
 	 ('Literie avec couette / couverture'),
 	 ('Volets ou rideaux dans les chambres'),
 	 ('Plaques de cuisson'),
