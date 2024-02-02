@@ -1,25 +1,29 @@
 <?php
 
+
 namespace App\Repository;
+
 
 use App\Entity\Favoris;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
- * @extends ServiceEntityRepository<Favoris>
- *
- * @method Favoris|null find($id, $lockMode = null, $lockVersion = null)
- * @method Favoris|null findOneBy(array $criteria, array $orderBy = null)
- * @method Favoris[]    findAll()
- * @method Favoris[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+* @extends ServiceEntityRepository<Favoris>
+*
+* @method Favoris|null find($id, $lockMode = null, $lockVersion = null)
+* @method Favoris|null findOneBy(array $criteria, array $orderBy = null)
+* @method Favoris[]    findAll()
+* @method Favoris[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+*/
 class FavorisRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Favoris::class);
-    }
+   public function __construct(ManagerRegistry $registry)
+   {
+       parent::__construct($registry, Favoris::class);
+   }
+
 
 //    /**
 //     * @return Favoris[] Returns an array of Favoris objects
@@ -35,6 +39,7 @@ class FavorisRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
+
 
 //    public function findOneBySomeField($value): ?Favoris
 //    {
