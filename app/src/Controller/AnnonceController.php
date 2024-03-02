@@ -23,7 +23,7 @@ class AnnonceController extends AbstractController
             'annonces' => $annonceRepository->findAll(),
         ]);
     }
-
+    // Route pour ajouter une annonce
     #[Route('/new', name: 'app_annonce_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
@@ -86,7 +86,7 @@ class AnnonceController extends AbstractController
             'annonce' => $annonce,
         ]);
     }
-
+    // Route pour modifier une annonce
     #[Route('/{id}/edit', name: 'app_annonce_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Annonce $annonce, EntityManagerInterface $entityManager): Response
     {
@@ -108,7 +108,7 @@ class AnnonceController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    // Route pour supprimer une annonce
     #[Route('/{id}', name: 'app_annonce_delete', methods: ['POST'])]
     public function delete(Request $request, Annonce $annonce, EntityManagerInterface $entityManager): Response
     {

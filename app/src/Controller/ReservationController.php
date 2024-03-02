@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ReservationController extends AbstractController
 {
     
-
+    // Affiche les réservations en fonction du rôle de l'utilisateur.
     #[Route('/indexauth', name: 'app_reservation_index', methods: ['GET'])]
     public function index(ReservationRepository $reservationRepository): Response
     {
@@ -37,7 +37,7 @@ class ReservationController extends AbstractController
     }
 
 
-
+    // Affiche les réservations de l'utilisateur connecté.
     #[Route('/', name: 'app_reservation_index_user', methods: ['GET'])]
     public function userindex(ReservationRepository $reservationRepository): Response
     {
@@ -49,7 +49,7 @@ class ReservationController extends AbstractController
             'reservations' => $reservations,
         ]);
     }
-
+    // Crée une nouvelle réservation.
     #[Route('/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -58,10 +58,10 @@ class ReservationController extends AbstractController
         $user = $this->getUser();
         $annonceId = $request->get('id');
         $annonce = $entityManager->getRepository(Annonce::class)->find($annonceId);
-        
+        // Associe l'annonce et l'utilisateur à la nouvelle réservation.
         $reservation->setAnnonce($annonce);
         $reservation->setUser($this->getUser());
-
+        // Crée le formulaire de réservation.
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
@@ -77,7 +77,7 @@ class ReservationController extends AbstractController
             'form' => $form,
         ]);
     }
-
+     // Affiche une réservation spécifique.
     #[Route('/{id}', name: 'app_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
     {
@@ -85,7 +85,7 @@ class ReservationController extends AbstractController
             'reservation' => $reservation,
         ]);
     }
-
+    // Modifie une réservation existante.
     #[Route('/{id}/edit', name: 'app_reservation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
@@ -119,7 +119,7 @@ class ReservationController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    // Supprime une réservation.
     #[Route('/{id}', name: 'app_reservation_delete', methods: ['POST'])]
     public function delete(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {

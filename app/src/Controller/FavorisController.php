@@ -13,10 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+// Définit le préfixe de route pour toutes les fonctions du contrôleur
 #[Route('/favoris')]
 class FavorisController extends AbstractController
 {
+    // Route pour afficher la liste des favoris
    #[Route('/', name: 'app_favoris_index', methods: ['GET'])]
    public function index(FavorisRepository $favorisRepository): Response
    {
@@ -25,7 +26,7 @@ class FavorisController extends AbstractController
        ]);
    }
 
-
+   // Route pour créer un nouveau favori
    #[Route('/new', name: 'app_favoris_new', methods: ['GET', 'POST'])]
    public function new(Request $request, EntityManagerInterface $entityManager): Response
    {
@@ -33,7 +34,7 @@ class FavorisController extends AbstractController
        $form = $this->createForm(FavorisType::class, $favori);
        $form->handleRequest($request);
 
-
+        // Vérifie si le formulaire est soumis et valide
        if ($form->isSubmitted() && $form->isValid()) {
            $entityManager->persist($favori);
            $entityManager->flush();
@@ -49,7 +50,7 @@ class FavorisController extends AbstractController
        ]);
    }
 
-
+    // Route pour afficher un favori spécifique
    #[Route('/{id}', name: 'app_favoris_show', methods: ['GET'])]
    public function show(Favoris $favori): Response
    {
@@ -58,7 +59,7 @@ class FavorisController extends AbstractController
        ]);
    }
 
-
+   // Route pour modifier un favori existant
    #[Route('/{id}/edit', name: 'app_favoris_edit', methods: ['GET', 'POST'])]
    public function edit(Request $request, Favoris $favori, EntityManagerInterface $entityManager): Response
    {
@@ -80,7 +81,7 @@ class FavorisController extends AbstractController
        ]);
    }
 
-
+   // Route pour supprimer un favori
    #[Route('/{id}', name: 'app_favoris_delete', methods: ['POST'])]
    public function delete(Request $request, Favoris $favori, EntityManagerInterface $entityManager): Response
    {

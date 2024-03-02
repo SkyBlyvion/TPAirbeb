@@ -16,6 +16,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 #[Route('/user')]
 class UserController extends AbstractController
 {
+    // Liste des utilisateurs
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
@@ -23,7 +24,7 @@ class UserController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
-
+    // Route pour ajouter un utilisateur
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -43,7 +44,7 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    // Route pour voir les informations d'un utilisateur
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
@@ -51,7 +52,7 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-
+    // Route pour modifier les informations d'un utilisateur
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -81,7 +82,7 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    // Route pour supprimer un utilisateur
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
